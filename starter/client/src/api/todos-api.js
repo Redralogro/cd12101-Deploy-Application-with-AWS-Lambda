@@ -13,6 +13,7 @@ export async function getTodos(idToken) {
     }
   )
   console.log('Todos:', response.data)
+
   return response.data.items
 }
 
@@ -31,6 +32,7 @@ export async function createTodo(idToken, newTodo) {
 }
 
 export async function patchTodo(idToken, todoId, updatedTodo) {
+  console.log(JSON.stringify(updatedTodo),updatedTodo)
   await Axios.patch(
     `${process.env.REACT_APP_API_ENDPOINT}/todos/${todoId}`,
     JSON.stringify(updatedTodo),
