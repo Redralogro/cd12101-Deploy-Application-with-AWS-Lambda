@@ -49,6 +49,7 @@ export function EditTodo() {
       const uploadUrl = await getUploadUrl(accessToken, todoId)
 
       setUploadState(UploadState.UploadingFile)
+      console.log(file)
       await uploadFile(uploadUrl, file)
 
       alert('File was uploaded!')

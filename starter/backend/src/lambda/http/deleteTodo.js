@@ -14,7 +14,7 @@ export const handler = middy()
   .handler(async (event) => {
     const userId = getUserId(event);
     const todoId = event.pathParameters.todoId
-    await deleteTodo(userId, todoId);
+    const deleteItem =  await deleteTodo(todoId, userId);
     
     return {
       statusCode: 200,
@@ -22,7 +22,10 @@ export const handler = middy()
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Credentials': true,
         'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
-        'Access-Control-Allow-Methods': '*'
-      }
+        'Access-Control-Allow-Methods': 'DELETE,OPTIONS'
+      },
+      body: JSON.stringify({
+        item: deleteItem
+      })
     }
   })

@@ -65,9 +65,16 @@ export async function getUploadUrl(idToken, todoId) {
       }
     }
   )
+  console.log('upload phase',idToken,todoId, response.data.uploadUrl)
   return response.data.uploadUrl
 }
 
 export async function uploadFile(uploadUrl, file) {
-  await Axios.put(uploadUrl, file)
+  await Axios.put(uploadUrl, file,
+    {
+      headers: {
+      'Content-Type': 'multipart/form-data'
+      }
+    }
+  )
 }

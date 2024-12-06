@@ -80,6 +80,7 @@ export function Todos() {
         audience: `https://dev-tevhfr5q4shvbgta.us.auth0.com/api/v2/`,
         scope: 'delete:todo'
       })
+      console.log(todoId, accessToken)
       await deleteTodo(accessToken, todoId)
       setTodos(todos.filter((todo) => todo.todoId !== todoId))
     } catch (e) {
@@ -119,10 +120,10 @@ export function Todos() {
   const [loadingTodos, setLoadingTodos] = useState(true)
   const navigate = useNavigate()
 
-  console.log('User', {
-    name: user.name,
-    email: user.email
-  })
+  // console.log('User', {
+  //   name: user.name,
+  //   email: user.email
+  // })
 
   useEffect(() => {
     async function foo() {

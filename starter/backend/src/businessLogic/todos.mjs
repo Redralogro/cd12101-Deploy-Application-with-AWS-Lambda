@@ -14,7 +14,8 @@ export const createTodo = async (todo, userId) => {
         done: false,
         attachmentUrl: `https://${process.env.ATTACHMENT_S3_BUCKET}.s3.amazonaws.com/${todoId}`
     }
-    return await todoAccess.createTodo(todoItem);
+    await todoAccess.createTodo(todoItem);
+    return todoItem
 } 
 
 export const updateTodo = async (updatedTodo, userId, todoId) => {
@@ -28,8 +29,8 @@ export const updateTodo = async (updatedTodo, userId, todoId) => {
     return await todoAccess.updateTodo(updateItem);
 }
 
-export const deleteTodo = async (userId, todoId) => {
-    return await todoAccess.deleteTodo(userId, todoId);
+export const deleteTodo = async (todoId, userId ) => {
+    return await todoAccess.deleteTodo(todoId, userId );
 }
 
 export const getTodos = async (userId) => {
